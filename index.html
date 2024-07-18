@@ -12,9 +12,30 @@
             background-color: #121212;
             color: #e0e0e0;
         }
+        .navbar {
+            width: 100%;
+            background-color: #1e1e1e;
+            overflow: auto;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .navbar a {
+            float: left;
+            padding: 14px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 17px;
+            color: #e0e0e0;
+        }
+        .navbar a:hover {
+            background-color: #ffab40;
+            color: #121212;
+        }
         .container {
             max-width: 900px;
-            margin: 50px auto;
+            margin: 70px auto;
             padding: 20px;
             background-color: #1e1e1e;
             border-radius: 10px;
@@ -59,10 +80,131 @@
         .brand span {
             color: #ffab40;
         }
+        .faq-section {
+            margin-top: 40px;
+        }
+        .faq-title {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #ffab40;
+            text-align: center;
+        }
+        .faq-item {
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #2c2c2c;
+            border-radius: 5px;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-item:hover {
+            background-color: #3a3a3a;
+        }
+        .faq-answer {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #1e1e1e;
+            border-left: 3px solid #ffab40;
+        }
+        .faq-icon {
+            margin-left: 10px;
+            color: #ffab40;
+        }
+        .scrolling-wrapper {
+            display: flex;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 10px 0;
+        }
+        .scrolling-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+        .student {
+            display: inline-block;
+            background-color: #2c2c2c;
+            color: #fff;
+            margin: 0 10px;
+            padding: 10px;
+            border-radius: 5px;
+            min-width: 200px;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+        .student img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        .student:hover {
+            transform: scale(1.1);
+        }
+        .popup-form {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+        }
+        .popup-content {
+            background-color: #2c2c2c;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        .popup-content h2 {
+            margin-top: 0;
+            color: #ffab40;
+        }
+        .popup-content label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .popup-content input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+        }
+        .popup-content button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ffab40;
+            color: #121212;
+            cursor: pointer;
+        }
+        .popup-content button:hover {
+            background-color: #ff8f00;
+        }
+        .close-popup {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #ffab40;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="navbar">
+        <a href="#curriculum">Curriculum</a>
+        <a href="#students">Past Students</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+    </div>
+    <div class="container" id="curriculum">
         <h1>Python Curriculum</h1>
         <table>
             <thead>
@@ -106,13 +248,108 @@
                 </tr>
                 <tr>
                     <td>9. Plotting</td>
-                    <td>Creating plots and visualizations with Matplotlib.</td>
+                    <td>Creating plots and visualizations with Matplotlib, including annotations.</td>
                 </tr>
             </tbody>
         </table>
+        <div class="scrolling-wrapper" id="students">
+            <div class="student">
+                <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Student 1">
+                <p>Rahul Sharma</p>
+            </div>
+            <div class="student">
+                <img src="https://randomuser.me/api/portraits/women/2.jpg" alt="Student 2">
+                <p>Ana Rodriguez</p>
+            </div>
+            <div class="student">
+                <img src="https://randomuser.me/api/portraits/men/3.jpg" alt="Student 3">
+                <p>Vijay Kumar</p>
+            </div>
+            <div class="student">
+                <img src="https://randomuser.me/api/portraits/women/4.jpg" alt="Student 4">
+                <p>Isabella Garcia</p>
+            </div>
+            <div class="student">
+                <img src="https://randomuser.me/api/portraits/men/5.jpg" alt="Student 5">
+                <p>Ravi Patel</p>
+            </div>
+        </div>
+        <div class="faq-section" id="faq">
+            <div class="faq-title">Frequently Asked Questions</div>
+            <div class="faq-item">
+                <div>What is the duration of the course?<span class="faq-icon">+</span></div>
+                <div class="faq-answer">The course duration is 10 weeks, with 2 sessions per week (weekends).</div>
+            </div>
+            <div class="faq-item">
+                <div>Will we be using any online tools?<span class="faq-icon">+</span></div>
+                <div class="faq-answer">Yes, we will be using Google Colab for coding exercises, along with the famous Software Carpentry syllabus. Participants will receive code handouts and other resources.</div>
+            </div>
+            <div class="faq-item">
+                <div>How can I get help during the course?<span class="faq-icon">+</span></div>
+                <div class="faq-answer">You can get help through our online forums, email support, and weekly Q&A sessions. Contact us at <a href="mailto:shivayshakti2025@gmail.com">shivayshakti2025@gmail.com</a>.</div>
+            </div>
+        </div>
         <div class="brand">
             Brought to you by <span>Philosophers Who Code</span>
         </div>
+        <div class="popup-form" id="popupForm">
+            <div class="popup-content" id="contact">
+                <span class="close-popup" id="closePopup">&times;</span>
+                <h2>Stay Updated</h2>
+                <form action="mailto:shivayshakti2025@gmail.com" method="post" enctype="text/plain">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(function (item) {
+                item.addEventListener('click', function () {
+                    var answer = this.querySelector('.faq-answer');
+                    var icon = this.querySelector('.faq-icon');
+                    if (answer.style.display === 'block') {
+                        answer.style.display = 'none';
+                        icon.textContent = '+';
+                    } else {
+                        answer.style.display = 'block';
+                        icon.textContent = '-';
+                    }
+                });
+            });
+
+            var popupForm = document.getElementById('popupForm');
+            var closePopup = document.getElementById('closePopup');
+
+            setTimeout(function () {
+                popupForm.style.display = 'flex';
+            }, 3000);
+
+            closePopup.addEventListener('click', function () {
+                popupForm.style.display = 'none';
+            });
+
+            // Horizontal auto-scroll for students
+            var scrollingWrapper = document.querySelector('.scrolling-wrapper');
+            function autoScroll() {
+                scrollingWrapper.scrollBy({
+                    left: 1,
+                    behavior: 'smooth'
+                });
+                if (scrollingWrapper.scrollLeft >= (scrollingWrapper.scrollWidth - scrollingWrapper.clientWidth)) {
+                    scrollingWrapper.scrollTo({
+                        left: 0,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+            setInterval(autoScroll, 30);
+        });
+    </script>
 </body>
 </html>
