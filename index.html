@@ -3,25 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python Curriculum</title>
+    <title>Philosophers Who Code - Python Curriculum</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
-            padding: 20px;
-            background-color: #f4f4f9;
+            padding: 0;
+            background-color: #121212;
+            color: #e0e0e0;
         }
         .container {
-            max-width: 800px;
-            margin: 0 auto;
+            max-width: 900px;
+            margin: 50px auto;
             padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         h1 {
             text-align: center;
-            color: #333;
+            color: #ffab40;
         }
         table {
             width: 100%;
@@ -29,17 +35,29 @@
             margin: 20px 0;
         }
         table, th, td {
-            border: 1px solid #ddd;
+            border: 1px solid #333;
         }
         th, td {
-            padding: 12px;
+            padding: 15px;
             text-align: left;
         }
         th {
-            background-color: #f2f2f2;
+            background-color: #ffab40;
+            color: #121212;
         }
-        .annotation {
-            color: #007BFF;
+        tr:nth-child(even) {
+            background-color: #2c2c2c;
+        }
+        tr:nth-child(odd) {
+            background-color: #1e1e1e;
+        }
+        .brand {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+        .brand span {
+            color: #ffab40;
         }
     </style>
 </head>
@@ -49,57 +67,52 @@
         <table>
             <thead>
                 <tr>
-                    <th>Topic</th>
-                    <th>Description</th>
+                    <th>Module</th>
+                    <th>Topics</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>Introduction to Python</td>
+                    <td>1. Introduction</td>
                     <td>Basic syntax, variables, and data types.</td>
                 </tr>
                 <tr>
-                    <td>Control Flow</td>
-                    <td>Conditionals and loops.</td>
+                    <td>2. Variables and Assignment</td>
+                    <td>Understanding and using variables in Python.</td>
                 </tr>
                 <tr>
-                    <td>Functions</td>
-                    <td>Defining and using functions.</td>
+                    <td>3. Data Types and Type Conversion</td>
+                    <td>Different data types and how to convert between them.</td>
                 </tr>
                 <tr>
-                    <td>Data Structures</td>
-                    <td>Lists, dictionaries, and sets.</td>
+                    <td>4. Built-in Functions and Help</td>
+                    <td>Using Python's built-in functions and the help system.</td>
                 </tr>
                 <tr>
-                    <td>Modules and Packages</td>
-                    <td>Importing and using modules.</td>
+                    <td>5. Morning Coffee</td>
+                    <td>Break time with engaging activities.</td>
                 </tr>
                 <tr>
-                    <td>File I/O</td>
-                    <td>Reading from and writing to files.</td>
+                    <td>6. Libraries</td>
+                    <td>Introduction to Python libraries.</td>
                 </tr>
                 <tr>
-                    <td>Error Handling</td>
-                    <td>Exception handling in Python.</td>
+                    <td>7. Reading Tabular Data into DataFrames</td>
+                    <td>Using Pandas to read and manipulate tabular data.</td>
                 </tr>
                 <tr>
-                    <td>NumPy</td>
-                    <td>Introduction to NumPy for numerical operations.</td>
+                    <td>8. Pandas DataFrames</td>
+                    <td>Advanced operations with Pandas DataFrames.</td>
                 </tr>
                 <tr>
-                    <td>Pandas</td>
-                    <td>Data manipulation and analysis with Pandas.</td>
-                </tr>
-                <tr>
-                    <td>Matplotlib</td>
-                    <td>Creating plots and visualizations with Matplotlib, including <span class="annotation">annotations</span>.</td>
-                </tr>
-                <tr>
-                    <td>Plotting</td>
-                    <td>Advanced plotting techniques.</td>
+                    <td>9. Plotting</td>
+                    <td>Creating plots and visualizations with Matplotlib.</td>
                 </tr>
             </tbody>
         </table>
+        <div class="brand">
+            Brought to you by <span>Philosophers Who Code</span>
+        </div>
     </div>
 </body>
 </html>
