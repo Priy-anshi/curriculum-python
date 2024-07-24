@@ -11,6 +11,7 @@
             padding: 0;
             background-color: #121212;
             color: #e0e0e0;
+            overflow: hidden; /* Ensure the body doesn't scroll */
         }
         .navbar {
             width: 100%;
@@ -40,15 +41,34 @@
             background-color: #1e1e1e;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            animation: fadeIn 1s ease-in-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
         h1 {
             text-align: center;
             color: #ffab40;
+        }
+        .brand-tagline {
+            text-align: center;
+            font-size: 1.5em;
+            color: #ffab40;
+            margin-top: 20px;
+        }
+        .animated-text {
+            font-size: 2em;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        #particles-js {
+            width: 100%;
+            height: 100%;
+            background-color: #000;
         }
         table {
             width: 100%;
@@ -72,13 +92,34 @@
         tr:nth-child(odd) {
             background-color: #1e1e1e;
         }
-        .brand {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 1.2em;
+        .scrolling-wrapper {
+            display: flex;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 10px 0;
         }
-        .brand span {
-            color: #ffab40;
+        .scrolling-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+        .student {
+            display: inline-block;
+            background-color: #2c2c2c;
+            color: #fff;
+            margin: 0 10px;
+            padding: 10px;
+            border-radius: 5px;
+            min-width: 200px;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+        .student img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        .student:hover {
+            transform: scale(1.1);
         }
         .faq-section {
             margin-top: 40px;
@@ -113,88 +154,6 @@
             margin-left: 10px;
             color: #ffab40;
         }
-        .scrolling-wrapper {
-            display: flex;
-            overflow-x: auto;
-            white-space: nowrap;
-            padding: 10px 0;
-        }
-        .scrolling-wrapper::-webkit-scrollbar {
-            display: none;
-        }
-        .student {
-            display: inline-block;
-            background-color: #2c2c2c;
-            color: #fff;
-            margin: 0 10px;
-            padding: 10px;
-            border-radius: 5px;
-            min-width: 200px;
-            text-align: center;
-            transition: transform 0.3s ease-in-out;
-        }
-        .student img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            margin-bottom: 10px;
-        }
-        .student:hover {
-            transform: scale(1.1);
-        }
-        .popup-form {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            justify-content: center;
-            align-items: center;
-            z-index: 1001;
-        }
-        .popup-content {
-            background-color: #2c2c2c;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            position: relative;
-        }
-        .popup-content h2 {
-            margin-top: 0;
-            color: #ffab40;
-        }
-        .popup-content label {
-            display: block;
-            margin-bottom: 10px;
-        }
-        .popup-content input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: none;
-            border-radius: 5px;
-        }
-        .popup-content button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            background-color: #ffab40;
-            color: #121212;
-            cursor: pointer;
-        }
-        .popup-content button:hover {
-            background-color: #ff8f00;
-        }
-        .close-popup {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 1.5em;
-            cursor: pointer;
-            color: #ffab40;
-        }
     </style>
 </head>
 <body>
@@ -206,6 +165,9 @@
     </div>
     <div class="container" id="curriculum">
         <h1>Python Curriculum</h1>
+        <div class="brand-tagline">Turning Thinkers into Builders</div>
+        <div class="animated-text" id="animated-text"></div>
+        <div class="background" id="particles-js"></div>
         <table>
             <thead>
                 <tr>
@@ -292,63 +254,183 @@
         <div class="brand">
             Brought to you by <span>Philosophers Who Code</span>
         </div>
-        <div class="popup-form" id="popupForm">
-            <div class="popup-content" id="contact">
-                <span class="close-popup" id="closePopup">&times;</span>
-                <h2>Stay Updated</h2>
-                <form action="mailto:shivayshakti2025@gmail.com" method="post" enctype="text/plain">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required>
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
-                    <button type="submit">Submit</button>
-                </form>
-            </div>
-        </div>
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var faqItems = document.querySelectorAll('.faq-item');
-            faqItems.forEach(function (item) {
-                item.addEventListener('click', function () {
-                    var answer = this.querySelector('.faq-answer');
-                    var icon = this.querySelector('.faq-icon');
-                    if (answer.style.display === 'block') {
-                        answer.style.display = 'none';
-                        icon.textContent = '+';
-                    } else {
-                        answer.style.display = 'block';
-                        icon.textContent = '-';
-                    }
-                });
+        const words = ["Explore Data Science", "Explore Machine Learning", "Explore Data Analysis"];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let currentWord = "";
+        let isDeleting = false;
+
+        function type() {
+            const animatedText = document.getElementById("animated-text");
+
+            if (isDeleting) {
+                currentWord = words[wordIndex].substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                currentWord = words[wordIndex].substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            animatedText.innerHTML = currentWord;
+
+            if (!isDeleting && charIndex === words[wordIndex].length) {
+                isDeleting = true;
+                setTimeout(type, 1000); // Wait before deleting
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                setTimeout(type, 500); // Wait before typing next word
+            } else {
+                setTimeout(type, isDeleting ? 50 : 100);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", type);
+
+        var faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(function (item) {
+            item.addEventListener('click', function () {
+                var answer = this.querySelector('.faq-answer');
+                var icon = this.querySelector('.faq-icon');
+                if (answer.style.display === 'block') {
+                    answer.style.display = 'none';
+                    icon.textContent = '+';
+                } else {
+                    answer.style.display = 'block';
+                    icon.textContent = '-';
+                }
             });
+        });
 
-            var popupForm = document.getElementById('popupForm');
-            var closePopup = document.getElementById('closePopup');
-
-            setTimeout(function () {
-                popupForm.style.display = 'flex';
-            }, 3000);
-
-            closePopup.addEventListener('click', function () {
-                popupForm.style.display = 'none';
+        // Horizontal auto-scroll for students
+        var scrollingWrapper = document.querySelector('.scrolling-wrapper');
+        function autoScroll() {
+            scrollingWrapper.scrollBy({
+                left: 1,
+                behavior: 'smooth'
             });
-
-            // Horizontal auto-scroll for students
-            var scrollingWrapper = document.querySelector('.scrolling-wrapper');
-            function autoScroll() {
-                scrollingWrapper.scrollBy({
-                    left: 1,
+            if (scrollingWrapper.scrollLeft >= (scrollingWrapper.scrollWidth - scrollingWrapper.clientWidth)) {
+                scrollingWrapper.scrollTo({
+                    left: 0,
                     behavior: 'smooth'
                 });
-                if (scrollingWrapper.scrollLeft >= (scrollingWrapper.scrollWidth - scrollingWrapper.clientWidth)) {
-                    scrollingWrapper.scrollTo({
-                        left: 0,
-                        behavior: 'smooth'
-                    });
-                }
             }
-            setInterval(autoScroll, 30);
+        }
+        setInterval(autoScroll, 30);
+    </script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 100,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#ffffff"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    },
+                    "image": {
+                        "src": "img/github.svg",
+                        "width": 100,
+                        "height": 100
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 6,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "repulse"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 400,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
         });
     </script>
 </body>
